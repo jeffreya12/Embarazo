@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Cita.findByIdAndRemove(req.params.id, req.body, function (err, cita) {
+    if (err) return next(err);
+    res.json(cita);
+  });
+});
+
 module.exports = router;

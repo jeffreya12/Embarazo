@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Album.findByIdAndRemove(req.params.id, req.body, function (err, album) {
+    if (err) return next(err);
+    res.json(album);
+  });
+});
+
 module.exports = router;

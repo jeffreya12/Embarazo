@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Bebe.findByIdAndRemove(req.params.id, req.body, function (err, bebe) {
+    if (err) return next(err);
+    res.json(bebe);
+  });
+});
+
 module.exports = router;

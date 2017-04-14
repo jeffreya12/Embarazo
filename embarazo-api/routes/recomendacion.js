@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Recomendacion.findByIdAndRemove(req.params.id, req.body, function (err, recomendacion) {
+    if (err) return next(err);
+    res.json(recomendacion);
+  });
+});
+
 module.exports = router;

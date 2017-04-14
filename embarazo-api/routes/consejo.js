@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Consejo.findByIdAndRemove(req.params.id, req.body, function (err, consejo) {
+    if (err) return next(err);
+    res.json(consejo);
+  });
+});
+
 module.exports = router;

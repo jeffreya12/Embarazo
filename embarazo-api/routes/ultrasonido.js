@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Ultrasonido.findByIdAndRemove(req.params.id, req.body, function (err, ultrasonido) {
+    if (err) return next(err);
+    res.json(ultrasonido);
+  });
+});
+
 module.exports = router;

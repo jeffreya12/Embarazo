@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Diario.findByIdAndRemove(req.params.id, req.body, function (err, diario) {
+    if (err) return next(err);
+    res.json(diario);
+  });
+});
+
 module.exports = router;

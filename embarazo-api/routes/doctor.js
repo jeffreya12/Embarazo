@@ -34,4 +34,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE/:id */
+router.delete('/:id', function(req, res, next) {
+  Doctor.findByIdAndRemove(req.params.id, req.body, function (err, doctor) {
+    if (err) return next(err);
+    res.json(doctor);
+  });
+});
+
 module.exports = router;
