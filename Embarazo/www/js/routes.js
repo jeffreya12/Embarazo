@@ -94,6 +94,12 @@ angular.module('app.routes', [])
     controller: 'fotografAsCtrl'
   })
 
+  .state('nuevoConsejo', {
+    url: '/page13',
+    templateUrl: 'templates/nuevoConsejo.html',
+    controller: 'nuevoConsejoCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page8')
 
   
