@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Usuario = require('../models/Usuarios.js');
 
-/* GET /todos listing. */
+/* GET listing. */
 router.get('/', function(req, res, next) {
   Usuario.find(function (err, usuario) {
     if (err) return next(err);
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 module.exports = router;
 
-/* POST /todos */
+/* POST*/
 router.post('/', function(req, res, next) {
   Usuario.create(req.body, function (err, usuario) {
     if (err) return next(err);
@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* GET /todos/id */
+/* GET /id */
 router.get('/:id', function(req, res, next) {
   Usuario.findById(req.params.id, function (err, usuario) {
     if (err) return next(err);
@@ -28,18 +28,18 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-/* PUT /todos/:id */
+/* PUT /:id */
 router.put('/:id', function(req, res, next) {
-  Todo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Usuario.findByIdAndUpdate(req.params.id, req.body, function (err, usuario) {
     if (err) return next(err);
-    res.json(post);
+    res.json(usuario);
   });
 });
 
-/* DELETE /todos/:id */
+/* DELETE/:id */
 router.delete('/:id', function(req, res, next) {
-  Todo.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Usuario.findByIdAndRemove(req.params.id, req.body, function (err, usuario) {
     if (err) return next(err);
-    res.json(post);
+    res.json(usuario);
   });
 });
