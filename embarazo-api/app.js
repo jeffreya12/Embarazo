@@ -9,16 +9,16 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 //Rutas personalizadas
-var albumes = require('./routes/albumes');
-var bebes = require('./routes/bebes');
-var citas = require('./routes/citas');
-var consejos = require('./routes/consejos');
-var diarios = require('./routes/diarios');
-var doctores = require('./routes/doctores');
-var eventos = require('./routes/eventos');
-var recomendaciones = require('./routes/recomendaciones');
-var ultrasonidos = require('./routes/ultrasonidos');
-var usuarios = require('./routes/usuarios');
+var album = require('./routes/album');
+var bebe = require('./routes/bebe');
+var cita = require('./routes/cita');
+var consejo = require('./routes/consejo');
+var diario = require('./routes/diario');
+var doctor = require('./routes/doctor');
+var evento = require('./routes/evento');
+var recomendacion = require('./routes/recomendacion');
+var ultrasonido = require('./routes/ultrasonido');
+var usuario = require('./routes/usuario');
 
 var app = express();
 
@@ -38,16 +38,16 @@ app.use('/', index);
 app.use('/users', users);
 
 //Rutas personalizadas
-app.use('/albumes', albumes);
-app.use('/bebes', bebes);
-app.use('/citas', citas);
-app.use('/consejos', consejos);
-app.use('/diarios', diarios);
-app.use('/doctores', doctores);
-app.use('/eventos', eventos);
-app.use('/recomendaciones', recomendaciones);
-app.use('/ultrasonidos', ultrasonidos);
-app.use('/usuarios', usuarios);
+app.use('/album', album);
+app.use('/bebe', bebe);
+app.use('/cita', cita);
+app.use('/consejo', consejo);
+app.use('/diario', diario);
+app.use('/doctor', doctor);
+app.use('/evento', evento);
+app.use('/recomendacion', recomendacion);
+app.use('/ultrasonido', ultrasonido);
+app.use('/usuario', usuario);
 
 
 // catch 404 and forward to error handler

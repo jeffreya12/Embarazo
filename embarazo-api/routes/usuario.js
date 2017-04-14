@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Usuario = require('../models/Usuarios.js');
+var Usuario = require('../models/Usuario.js');
 
 /* GET listing. */
 router.get('/', function(req, res, next) {
@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
     res.json(usuario);
   });
 });
-module.exports = router;
 
 /* POST*/
 router.post('/', function(req, res, next) {
@@ -43,3 +42,5 @@ router.delete('/:id', function(req, res, next) {
     res.json(usuario);
   });
 });
+
+module.exports = router;
