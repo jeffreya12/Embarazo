@@ -32,11 +32,14 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('bebCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('bebCtrl', ['$scope', '$stateParams', 'service',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
+function ($scope, $stateParams, service) {
+	service.get("bebe?user_id=ejemplo", {}, $scope )
+	.then(function(data){
+		$scope.bebes = data.data
+	});
 
 }])
    
@@ -60,15 +63,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	$scope.user;
-	$scope.pass;
-
-	$scope.prueba = function(){
-		$scope.user = "Hola mundo";
-		$scope.pass = "123";
-		//console.log($scope.user);
-		//console.log($scope.pass);
-	};
+	
 
 }])
    
@@ -92,7 +87,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, service) {
-	service.get("consejo", {}, $scope )
+	service.get("consejo?user_id=ejemplo", {}, $scope )
 	.then(function(data){
 		$scope.consejos = data.data
 	});

@@ -8,8 +8,11 @@
           <strong>Mis consejos</strong>
         </p>
       </div>
-      <div id="consejos-markdown10" class="show-list-numbers-and-dots">
-        <p ng-repeat="consejo in consejos" style="color:#000000;">
+      <div ng-repeat="consejo in consejos" id="consejos-markdown10" class="show-list-numbers-and-dots">
+        <h2>
+			{{consejo.autor}}
+		</h2>
+        <p style="color:#000000;">
 			{{consejo.consejo}}
         </p>
       </div>
