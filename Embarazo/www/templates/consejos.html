@@ -9,7 +9,9 @@
         </p>
       </div>
       <div id="consejos-markdown10" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">No hay registro de consejos ingresados.</p>
+        <p ng-repeat="consejo in consejos" style="color:#000000;">
+			{{consejo.consejo}}
+        </p>
       </div>
     </div>
   </ion-content>
