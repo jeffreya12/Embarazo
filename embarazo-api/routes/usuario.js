@@ -19,9 +19,18 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* GET /id */
+/* GET /id 
 router.get('/:id', function(req, res, next) {
   Usuario.findById(req.params.id, function (err, usuario) {
+    if (err) return next(err);
+    res.json(usuario);
+  });
+});
+*/
+
+/* GET /id */
+router.get('/:_id', function(req, res, next) {
+  Usuario.find(req.params, function (err, usuario) {
     if (err) return next(err);
     res.json(usuario);
   });

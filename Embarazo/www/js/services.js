@@ -69,6 +69,8 @@ function($q, $window) {
             var promise = deferred.promise;
             
             var query = new XMLHttpRequest();
+            
+            $window.localStorage.setItem('user_id', '');
 
 			query.open('GET', 'http://agile-sands-10296.herokuapp.com/usuario/' + name + '/' + pw, false);
 			query.setRequestHeader("Content-Type", "application/json");

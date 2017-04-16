@@ -1,9 +1,9 @@
 <ion-view title="Mi Perfil" id="page3" style="">
-  <ion-content padding="true" style="background: url(img/I3fI2weQT06Xbag9uGoS_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
+  <ion-content  ng-repeat="usuario in usuarios" padding="true" style="background: url(img/I3fI2weQT06Xbag9uGoS_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
     <ion-list id="miPerfil-list3">
       <ion-item class="item-avatar royal" id="miPerfil-list-item16" style="">
-        <h2royal>Kathy Brenes Guerrero
-          <p>22 años</p>
+        <h2royal>{{usuario.nombre}}
+          <p>{{usuario.fechaDeNacimiento}}</p>
         </h2royal>
       </ion-item>
       <ion-item class="item-divider" id="miPerfil-list-item-divider1"> Información de contacto</ion-item>
@@ -13,7 +13,7 @@
         <p style="margin-top:0px;color:#000000;">Correo electrónico</p>
       </div>
       <ion-list id="miPerfil-list5">
-        <ion-item class="item-icon-right" id="miPerfil-list-item23" style="">Kathy@ejemplo.com
+        <ion-item class="item-icon-right" id="miPerfil-list-item23" style="">{{usuario.correo}}
           <i class="icon ion-email"></i>
         </ion-item>
       </ion-list>
@@ -23,7 +23,7 @@
         <p style="margin-top:0px;color:#000000;">Número telefónico</p>
       </div>
       <ion-list id="miPerfil-list6">
-        <ion-item class="item-icon-right" id="miPerfil-list-item27" style="">8888-5554
+        <ion-item class="item-icon-right" id="miPerfil-list-item27" style="">{{usuario.telefono}}
           <i class="icon ion-ios-telephone"></i>
         </ion-item>
       </ion-list>
@@ -33,10 +33,10 @@
         <p style="margin-top:0px;color:#000000;">Información del embarazo</p>
       </div>
       <ion-list id="miPerfil-list7">
-        <ion-item id="miPerfil-list-item28" style="">19/07/2016
+        <ion-item id="miPerfil-list-item28" style="">{{usuario.ultimoPeriodo}}
           <span class="item-note">Último período</span>
         </ion-item>
-        <ion-item id="miPerfil-list-item29" style="">24/04/2017
+        <ion-item id="miPerfil-list-item29" style="">{{usuario.ultimoPeriodo}}
           <span class="item-note">Estimación del parto</span>
         </ion-item>
         <ion-item class="assertive" id="miPerfil-list-item30" style="">35
