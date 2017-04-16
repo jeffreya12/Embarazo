@@ -8,18 +8,16 @@
 
         <label class="item item-input" id="iniciarSesiN-input1">
           <span class="input-label">Usuario</span>
-          <input placeholder="" type="text" ng-model="user">
+          <input placeholder="" type="text" ng-model="data.user">
         </label>
 
         <label class="item item-input" id="iniciarSesiN-input2">
           <span class="input-label">Contraseña</span>
-          <input placeholder="" type="password" ng-model="pass">
+          <input placeholder="" type="password" ng-model="data.pass">
         </label>
       </form>
-      <button class="button button-royal  button-block icon ion-log-in" ng-click="prueba()">
-        Prueba
-      </button>
-      <button class="button button-royal  button-block icon ion-log-in" ng-click="prueba()" ui-sref="tabsController.inicio">
+      <!--button class="button button-royal  button-block icon ion-log-in" ui-sref="tabsController.inicio"-->
+      <button class="button button-royal  button-block icon ion-log-in" ng-click="login()">
         Iniciar Sessión
       </button>
 

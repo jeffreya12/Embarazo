@@ -27,6 +27,14 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+/* GET /correo/pass */
+router.get('/:correo/:pass', function(req, res, next) {
+  Usuario.find(req.params, function (err, usuario) {
+    if (err) return next(err);
+    res.json(usuario);
+  });
+});
+
 /* PUT /:id */
 router.put('/:id', function(req, res, next) {
   Usuario.findByIdAndUpdate(req.params.id, req.body, function (err, usuario) {

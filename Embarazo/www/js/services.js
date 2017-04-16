@@ -60,3 +60,46 @@ function ($http)  {
       },
   }
 }])
+
+.service('LoginService', function($q) {
+    return {
+        loginUser: function(name, pw) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            
+            var query = new XMLHttpRequest();
+
+			query.open('GET', 'http://agile-sands-10296.herokuapp.com/usuario/' + name + '/' + pw, false);
+			query.setRequestHeader("Content-Type", "application/json");
+			query.onload = function (e) {
+			  if (query.readyState === 4) {
+				if (query.status === 200) {
+				  console.log(query.responseText);
+				} else {
+				  console.error(query.statusText);
+				}
+			  }
+			};
+			query.onerror = function (e) {
+			  console.error(query.statusText);
+			};
+			query.send();
+			
+            if (query.responseText === '[]') {
+                deferred.reject('Wrong credentials.');                
+            }
+            else {
+                deferred.resolve('Welcome ' + name + '!');
+            }
+            promise.success = function(fn) {
+                promise.then(fn);
+                return promise;
+            }
+            promise.error = function(fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+            return promise;
+        }
+    }
+})
