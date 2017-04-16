@@ -96,13 +96,14 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('consejosCtrl', ['$scope', '$stateParams', 'service', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('consejosCtrl', ['$scope', '$stateParams', 'service', '$window', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service) {
+function ($scope, $stateParams, service, $window) {
 	service.get("consejo/ejemplo", {}, $scope )
 	.then(function(data){
-		$scope.consejos = data.data
+		$scope.consejos = data.data;
+		console.log($window.localStorage.getItem('user_id'));
 	});
 
 }])

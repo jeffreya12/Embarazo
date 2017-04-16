@@ -61,7 +61,8 @@ function ($http)  {
   }
 }])
 
-.service('LoginService', function($q) {
+.service('LoginService',  
+function($q, $window) {
     return {
         loginUser: function(name, pw) {
             var deferred = $q.defer();
@@ -89,6 +90,9 @@ function ($http)  {
                 deferred.reject('Wrong credentials.');                
             }
             else {
+				var jsonResponse = JSON.parse(query.responseText);
+				console.log(jsonResponse[0]['_id']);
+				$window.localStorage.setItem('user_id', jsonResponse[0]['_id']);
                 deferred.resolve('Welcome ' + name + '!');
             }
             promise.success = function(fn) {
