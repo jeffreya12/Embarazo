@@ -18,9 +18,18 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* GET /id */
-router.get('/:id', function(req, res, next) {
-  Consejo.findById(req.params.id, function (err, consejo) {
+/* GET /id
+router.get('/:user_id', function(req, res, next) {
+  Consejo.find(req.params, function (err, consejo) {
+    if (err) return next(err);
+    res.json(consejo);
+  });
+});
+*/
+
+/* GET /user_id */
+router.get('/:user_id', function(req, res, next) {
+  Consejo.find(req.params, function (err, consejo) {
     if (err) return next(err);
     res.json(consejo);
   });
