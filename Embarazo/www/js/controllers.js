@@ -72,7 +72,7 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window) {
 	
-	if ($window.localStorage.getItem('user_id') != ''){
+	if ($window.localStorage.getItem('user_id') != '' || $window.localStorage.getItem('user_id') != null){
 		$state.go('tabsController.inicio');
 		console.log($window.localStorage.getItem('user_id'));
 	}
@@ -100,11 +100,27 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('consultasMDicasCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('consultasMDicasCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, service, $window, $ionicPopup) {
 
+	service.get('doctor/' + $window.localStorage.getItem('user_id'), {}, $scope )
+	.then(function(data){
+		$scope.doctores = data.data;
+	});
+	
+	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
+	.then(function(data){
+		$scope.citas = data.data;
+	});
+	
+	$scope.verCita = function(motivo, notasImportantes) {        
+		var alertPopup = $ionicPopup.alert({
+			title: motivo,
+			template: notasImportantes
+		});
+    }
 
 }])
    
