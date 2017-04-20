@@ -19,8 +19,8 @@ router.post('/', function(req, res, next) {
 });
 
 /* GET /id */
-router.get('/:id', function(req, res, next) {
-  Doctor.findById(req.params.id, function (err, doctor) {
+router.get('/:user_id', function(req, res, next) {
+  Doctor.find(req.params, function (err, doctor) {
     if (err) return next(err);
     res.json(doctor);
   });

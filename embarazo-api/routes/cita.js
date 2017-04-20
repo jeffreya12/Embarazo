@@ -19,8 +19,8 @@ router.post('/', function(req, res, next) {
 });
 
 /* GET /id */
-router.get('/:id', function(req, res, next) {
-  Cita.findById(req.params.id, function (err, cita) {
+router.get('/:user_id', function(req, res, next) {
+  Cita.find(req.params, function (err, cita) {
     if (err) return next(err);
     res.json(cita);
   });
