@@ -153,15 +153,16 @@ function ($scope, $stateParams, service, $window) {
 
 }])
    
-.controller('fotografAsCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$cordovaFile', '$window', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('fotografAsCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$cordovaFile', 'FileService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $cordovaCamera, $cordovaFile, $window) {
-
-	$scope.images = [];
+function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService) {
  
-    $scope.addImage = function() {
-        // 2
+	$scope.images = FileService.images();
+	
+ 
+	$scope.addImage = function() {
+		// 2
 		var options = {
 			destinationType : Camera.DestinationType.FILE_URI,
 			sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
@@ -203,7 +204,7 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, $window) {
 			// 6
 			function onCopySuccess(entry) {
 				$scope.$apply(function () {
-					$scope.images.push(entry.nativeURL);
+					FileService.storeImage(entry.nativeURL);
 				});
 			}
 	 
@@ -225,6 +226,7 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, $window) {
 			console.log(err);
 		});
 	}
+
 	$scope.urlForImage = function(imageName) {
 	  var name = imageName.substr(imageName.lastIndexOf('/') + 1);
 	  var trueOrigin = cordova.file.dataDirectory + name;
