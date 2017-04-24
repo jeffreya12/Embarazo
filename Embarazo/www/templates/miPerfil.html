@@ -3,7 +3,7 @@
     <ion-list id="miPerfil-list3">
       <ion-item class="item-avatar royal" id="miPerfil-list-item16" style="">
         <h2royal>{{usuario.nombre}}
-          <p>{{usuario.fechaDeNacimiento}}</p>
+          <p>{{usuario.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
         </h2royal>
       </ion-item>
       <ion-item class="item-divider" id="miPerfil-list-item-divider1"> Información de contacto</ion-item>
@@ -33,10 +33,10 @@
         <p style="margin-top:0px;color:#000000;">Información del embarazo</p>
       </div>
       <ion-list id="miPerfil-list7">
-        <ion-item id="miPerfil-list-item28" style="">{{usuario.ultimoPeriodo}}
+        <ion-item id="miPerfil-list-item28" style="">{{usuario.ultimoPeriodo | date:'dd/MM/yyyy'}}
           <span class="item-note">Último período</span>
         </ion-item>
-        <ion-item id="miPerfil-list-item29" style="">{{usuario.ultimoPeriodo}}
+        <ion-item id="miPerfil-list-item29" style="">{{usuario.ultimoPeriodo | date:'dd/MM/yyyy'}}
           <span class="item-note">Estimación del parto</span>
         </ion-item>
         <ion-item class="assertive" id="miPerfil-list-item30" style="">35

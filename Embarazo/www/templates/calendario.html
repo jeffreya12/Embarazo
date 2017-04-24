@@ -7,12 +7,12 @@
           <strong>Agenda del día</strong>
         </p>
       </div>
-      <div id="calendarios-markdown10" class="show-list-numbers-and-dots">
+      <div id="calendarios-markdown10" class="show-list-numbers-and-dots" ng-repeat="cita in citas">
         <h2>
-			Holas
+			{{cita.motivo}}
 		</h2>
         <p style="color:#000000;">
-			Hola
+			{{cita.fecha}}
         </p>
       </div>
     </div>

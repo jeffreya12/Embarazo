@@ -26,6 +26,14 @@ router.get('/:user_id', function(req, res, next) {
   });
 });
 
+/* GET /id/fecha */
+router.get('/:user_id/:fecha', function(req, res, next) {
+  Cita.find(req.params, function (err, cita) {
+    if (err) return next(err);
+    res.json(cita);
+  });
+});
+
 /* PUT /:id */
 router.put('/:id', function(req, res, next) {
   Cita.findByIdAndUpdate(req.params.id, req.body, function (err, cita) {

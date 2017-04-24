@@ -23,18 +23,24 @@ function ($scope, $stateParams, service, $ionicPopup) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, service, $window) {
+	
 	service.get('usuario/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
-		$scope.usuarios = data.data
+		$scope.usuarios = data.data;
 	});
 
 }])
    
-.controller('calendarioCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('calendarioCtrl', ['$scope', '$stateParams', 'service', '$window', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, service, $window) {
 
+	service.get('cita/' + $window.localStorage.getItem('user_id') + "/" + new Date().toISOString(), {}, $scope )
+	.then(function(data){
+		$scope.citas = data.data;
+		console.log(Date());
+	});
 
 }])
       
@@ -152,6 +158,15 @@ function ($scope, $stateParams, service, $window) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+	$scope.images = [];
+ 
+    $scope.addImage = function() {
+        console.log("add image");
+    }
+ 
+    $scope.urlForImage = function(imageName) {
+        console.log("get correct path for image");
+    }
 
 }])
    
