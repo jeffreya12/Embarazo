@@ -1,28 +1,30 @@
 <ion-view title="Consultas Médicas" id="page10" style="">
   <ion-content padding="true" style="background: url(img/TO8M3Y1QnO0K8rYm4Nbm_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
-    <ion-list id="consultasMDicas-list11">
-      <ion-item class="item-avatar" id="consultasMDicas-list-item11" style="">
-        <h2>Dr. Alejandro Chinchilla G.</h2>
-        <p>Medicina Materno Fetal Avanzada</p>
-      </ion-item>
-    </ion-list>
-    <div class="item item-body" id="consultasMDicas-list-item-container9" style="">
-      <div id="consultasMDicas-markdown11" class="show-list-numbers-and-dots">
-        <p style="margin-top:0px;color:#000000;">
-          <strong>Información de contacto</strong>
-        </p>
-      </div>
-      <ion-list id="consultasMDicas-list13">
-        <ion-item class="item-icon-right" id="consultasMDicas-list-item17" style="">info@medicinafetalcr.com
-          <i class="icon ion-ios-email"></i>
-        </ion-item>
-        <ion-item class="item-icon-right" id="consultasMDicas-list-item18" style="">8863 2980
-          <i class="icon ion-ios-telephone"></i>
-        </ion-item>
-        <ion-item class="item-icon-right" id="consultasMDicas-list-item19" style="">2246 3396
-          <i class="icon ion-ios-telephone"></i>
-        </ion-item>
-      </ion-list>
+    <div ng-repeat="doctor in doctores">
+		<ion-list id="consultasMDicas-list11">
+		  <ion-item class="item-avatar" id="consultasMDicas-list-item11" style="">
+			<h2>{{doctor.nombre}}</h2>
+			<p>{{doctor.centroMedico}}</p>
+		  </ion-item>
+		</ion-list>
+		<div class="item item-body" id="consultasMDicas-list-item-container9" style="">
+		  <div id="consultasMDicas-markdown11" class="show-list-numbers-and-dots">
+			<p style="margin-top:0px;color:#000000;">
+			  <strong>Información de contacto</strong>
+			</p>
+		  </div>
+		  <ion-list id="consultasMDicas-list13">
+			<ion-item class="item-icon-right" id="consultasMDicas-list-item17" style="">{{doctor.correo}}
+			  <i class="icon ion-ios-email"></i>
+			</ion-item>
+			<ion-item class="item-icon-right" id="consultasMDicas-list-item18" style="">{{doctor.telefonoCelular}}
+			  <i class="icon ion-ios-telephone"></i>
+			</ion-item>
+			<ion-item class="item-icon-right" id="consultasMDicas-list-item19" style="">{{doctor.telefonoOficina}}
+			  <i class="icon ion-ios-telephone"></i>
+			</ion-item>
+		  </ion-list>
+		</div>
     </div>
     <div class="item item-body" id="consultasMDicas-list-item-container10" style="">
       <div id="consultasMDicas-markdown14" class="show-list-numbers-and-dots">
@@ -30,12 +32,9 @@
           <strong>Registro de citas</strong>
         </p>
       </div>
-      <ion-list id="consultasMDicas-list14">
-        <ion-item id="consultasMDicas-list-item20" style="">15 febrero
-          <span class="item-note">Revisión Mensual</span>
-        </ion-item>
-        <ion-item id="consultasMDicas-list-item21" style="">1 marzo
-          <span class="item-note">Emergencia</span>
+      <ion-list id="consultasMDicas-list14" ng-repeat="cita in citas">
+        <ion-item id="consultasMDicas-list-item20" style="" ng-click="verCita('{{cita.motivo}}', '{{cita.notasImportantes}}')">{{cita.fecha | date: "dd/MM/yyyy"}}
+          <span class="item-note">{{cita.motivo}}</span>
         </ion-item>
       </ion-list>
       <button id="consultasMDicas-button14" class="button button-royal  button-block">Nuevo Registro</button>

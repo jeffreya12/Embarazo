@@ -1,3 +1,20 @@
-<ion-view title="Calendario" id="page4" style="">
-  <ion-content padding="true" style="background: url(img/iU38ZFCUT3WKZa48NWE4_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header"></ion-content>
+<ion-view title="Agenda" id="page4" style="">
+  <ion-content padding="true" style="background: url(img/iU38ZFCUT3WKZa48NWE4_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
+  <div class="spacer" style="width: 300px; height: 36px;"></div>
+    <div class="item item-body" id="calendarios-list-item-container11" style="">
+      <div id="calendario-markdown17" class="show-list-numbers-and-dots">
+        <p style="margin-top:0px;color:#000000;font-size:20px;">
+          <strong>Agenda del día</strong>
+        </p>
+      </div>
+      <div id="calendarios-markdown10" class="show-list-numbers-and-dots" ng-repeat="cita in citas">
+        <h2>
+			{{cita.motivo}}
+		</h2>
+        <p style="color:#000000;">
+			{{cita.fecha}}
+        </p>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>
