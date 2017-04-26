@@ -1,21 +1,33 @@
-<ion-view title="Consejos" id="page11" style="">
+<ion-view title="Diario" id="page11" style="">
   <ion-content padding="true" style="background: url(img/HkSskUSSRfypXUla2pEi_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
-    <a ui-sref="nuevoConsejo" id="consejos-button15" class="button button-royal  button-block">Agregar nuevo consejo</a>
-    <div class="spacer" style="width: 300px; height: 36px;"></div>
-    <div class="item item-body" id="consejos-list-item-container11" style="">
-      <div id="consejos-markdown17" class="show-list-numbers-and-dots">
-        <p style="margin-top:0px;color:#000000;font-size:20px;">
-          <strong>Mis consejos</strong>
-        </p>
-      </div>
-      <div ng-repeat="consejo in consejos" id="consejos-markdown10" class="show-list-numbers-and-dots">
-        <h2>
-			{{consejo.autor}}
-		</h2>
-        <p style="color:#000000;">
-			{{consejo.consejo}}
-        </p>
-      </div>
-    </div>
+    
+    <ion-scroll>
+		
+		<style>
+			.container {
+				 height: 48px;
+				 overflow: hidden;
+			}
+			.show {
+				 overflow: visible;
+				 height: auto;
+			}
+		</style>
+		
+		<div class="card" ng-repeat="consejo in consejos">
+			<div class="item item-divider">
+				{{consejo.fecha | date:'short'}}
+			</div>                    
+			<div class="item item-text-wrap container" ng-class="{show: show}">
+				<strong>{{consejo.entrada}}</strong>
+			</div>
+		</div>
+		
+	</ion-scroll>
+	
+	<div class="spacer" style="width: 300px; height: 36px;"></div>
+	
+	<a ui-sref="nuevoConsejo" id="consejos-button15" class="button button-royal  button-block">Agregar nuevo consejo</a>
+
   </ion-content>
 </ion-view>

@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var CitaSchema = new mongoose.Schema({
 	motivo : String,
 	fecha : Date,
-	notas_importantes : String,
+	notasImportantes : String,
 	user_id : String,
 });
 

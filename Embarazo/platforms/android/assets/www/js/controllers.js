@@ -36,7 +36,7 @@ function ($scope, $stateParams, service, $window) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, service, $window) {
 
-	service.get('cita/' + $window.localStorage.getItem('user_id') + "/" + new Date().toISOString(), {}, $scope )
+	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
 		$scope.citas = data.data;
 		console.log(Date());

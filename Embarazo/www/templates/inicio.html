@@ -7,11 +7,12 @@
       </label>
     </form>
     <div class="item item-body" id="inicio-list-item-container1" style=""></div>
-    <ion-list id="inicio-list1" ng-repeat="recomendacion in recomendaciones">
-      <ion-item class="item-thumbnail-left royal" id="inicio-list-item1" style="" ng-click="verRecomendacion('{{recomendacion.titulo}}', '{{recomendacion.contenido}}')">
-        <img src="img/S4fzKBZQ4KZajOvk8EDu_comida.jpg">
-        <h2royal>{{recomendacion.titulo}}</h2royal>
-      </ion-item>
-    </ion-list>
+    <ion-scroll>
+		<ion-list id="inicio-list1" ng-repeat="recomendacion in recomendaciones">
+		  <ion-item class="royal" id="inicio-list-item1" style="" ng-click="verRecomendacion('{{recomendacion.titulo}}', '{{recomendacion.contenido}}')">
+			<h2royal>{{recomendacion.titulo}}</h2royal>
+		  </ion-item>		  
+		</ion-list>
+    </ion-scroll>
   </ion-content>
 </ion-view>
