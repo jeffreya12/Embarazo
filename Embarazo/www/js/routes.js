@@ -99,6 +99,12 @@ angular.module('app.routes', [])
     templateUrl: 'templates/nuevoConsejo.html',
     controller: 'nuevoConsejoCtrl'
   })
+  
+  .state('editarPerfilDelBeb', {
+    url: '/page30',
+    templateUrl: 'templates/editarPerfilDelBeb.html',
+    controller: 'editarPerfilDelBebCtrl'
+  })
 
 $urlRouterProvider.otherwise('/page8')
 
