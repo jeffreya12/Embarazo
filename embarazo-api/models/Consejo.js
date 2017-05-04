@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var DiarioSchema = new mongoose.Schema({
+var ConsejoSchema = new mongoose.Schema({
 	fecha : Date,
 	entrada : String,
 	user_id : String,

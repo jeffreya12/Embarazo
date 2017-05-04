@@ -141,15 +141,22 @@ function ($scope, $stateParams, service, $window, $ionicPopup) {
 
 }])
    
-.controller('consejosCtrl', ['$scope', '$stateParams', 'service', '$window', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('consejosCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $window) {
+function ($scope, $stateParams, service, $window, $ionicPopup) {
 	
 	service.get('consejo/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
 		$scope.consejos = data.data;
 	});
+	
+	$scope.verEntrada = function(fecha, entrada) {        
+		var alertPopup = $ionicPopup.alert({
+			title: fecha,
+			template: entrada
+		});
+    }
 
 }])
    

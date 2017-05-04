@@ -9,10 +9,9 @@
     <div class="item item-body" id="inicio-list-item-container1" style=""></div>
     <ion-scroll>
 		<ion-list id="inicio-list1" ng-repeat="recomendacion in recomendaciones">
-		  <ion-item class="item-thumbnail-left royal" id="inicio-list-item1" style="" ng-click="verRecomendacion('{{recomendacion.titulo}}', '{{recomendacion.contenido}}')">
-			<img src="img/S4fzKBZQ4KZajOvk8EDu_comida.jpg">
+		  <ion-item class="royal" id="inicio-list-item1" style="" ng-click="verRecomendacion('{{recomendacion.titulo}}', '{{recomendacion.contenido}}')">
 			<h2royal>{{recomendacion.titulo}}</h2royal>
-		  </ion-item>
+		  </ion-item>		  
 		</ion-list>
     </ion-scroll>
   </ion-content>

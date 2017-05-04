@@ -18,7 +18,7 @@
 			<div class="item item-divider">
 				{{consejo.fecha | date:'short'}}
 			</div>                    
-			<div class="item item-text-wrap container" ng-class="{show: show}">
+			<div class="item item-text-wrap container" ng-class="{show: show}" ng-click="verEntrada('{{consejo.fecha | date:'short'}}', '{{consejo.entrada}}')">
 				<strong>{{consejo.entrada}}</strong>
 			</div>
 		</div>
