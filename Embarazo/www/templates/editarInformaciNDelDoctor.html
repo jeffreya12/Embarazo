@@ -1,0 +1,36 @@
+<ion-view title="Editar información del doctor" id="page32">
+  <ion-content padding="true" class="has-header">
+    <div class="list card" id="editarInformaciNDelDoctor-card23">
+      <form id="editarInformaciNDelDoctor-form2" class="list">
+        <label class="item item-input" id="editarInformaciNDelDoctor-input10">
+          <span class="input-label">Nombre del doctor</span>
+          <input ng-model="doctor.nombre" type="text" placeholder="">
+        </label>
+        <label class="item item-input" id="editarInformaciNDelDoctor-input11">
+          <span class="input-label">Centro médico</span>
+          <input ng-model="doctor.centroMedico" type="text" placeholder="">
+        </label>
+      </form>
+      <div class="item item-body" id="editarInformaciNDelDoctor-list-item-container25">
+        <div id="editarInformaciNDelDoctor-markdown26" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">Información de contacto</p>
+        </div>
+        <ion-list id="editarInformaciNDelDoctor-list20">
+          <label class="item item-input" id="editarInformaciNDelDoctor-input7">
+            <span class="input-label">Email</span>
+            <input ng-model="doctor.correo" type="email" placeholder="">
+          </label>
+          <label class="item item-input" id="editarInformaciNDelDoctor-input9">
+            <span class="input-label">Teléfono celular</span>
+            <input ng-model="doctor.telefonoCelular" type="tel" placeholder="">
+          </label>
+          <label class="item item-input" id="editarInformaciNDelDoctor-input8">
+            <span class="input-label">Teléfono de oficina</span>
+            <input ng-model="doctor.telefonoOficina" type="tel" placeholder="">
+          </label>
+        </ion-list>
+      </div>
+    </div>
+    <a id="editarInformaciNDelDoctor-button22" class="button button-royal  button-block icon-right ion-checkmark" ng-click="updateDoctor(doctor)">Guardar</a>
+  </ion-content>
+</ion-view>

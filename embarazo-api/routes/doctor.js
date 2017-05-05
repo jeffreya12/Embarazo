@@ -27,8 +27,8 @@ router.get('/:user_id', function(req, res, next) {
 });
 
 /* PUT /:id */
-router.put('/:id', function(req, res, next) {
-  Doctor.findByIdAndUpdate(req.params.id, req.body, function (err, doctor) {
+router.put('/:user_id', function(req, res, next) {
+  Doctor.findOneAndUpdate(req.params, req.body, function (err, doctor) {
     if (err) return next(err);
     res.json(doctor);
   });

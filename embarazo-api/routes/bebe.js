@@ -36,8 +36,8 @@ router.get('/:user_id', function(req, res, next) {
 });
 
 /* PUT /:id */
-router.put('/:id', function(req, res, next) {
-  Bebe.findByIdAndUpdate(req.params.id, req.body, function (err, bebe) {
+router.put('/:user_id', function(req, res, next) {
+  Bebe.findOneAndUpdate(req.params, req.body, function (err, bebe) {
     if (err) return next(err);
     res.json(bebe);
   });

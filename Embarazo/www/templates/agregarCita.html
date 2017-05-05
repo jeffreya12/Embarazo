@@ -1,0 +1,20 @@
+<ion-view title="Agregar cita" id="page31">
+  <ion-content padding="true" style="background: url(img/TO8M3Y1QnO0K8rYm4Nbm_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
+    <div class="item item-body" id="agregarCita-list-item-container30">
+      <div id="agregarCita-markdown35" class="show-list-numbers-and-dots">
+        <p style="margin-top:0px;color:#000000;">Descripción de la cita</p>
+      </div>
+      <form id="agregarCita-form9" class="list">
+        <label class="item item-input" id="agregarCita-input25">
+          <span class="input-label">Fecha</span>
+          <input ng-model="cita.fecha" type="date" placeholder="">
+        </label>
+        <label class="item item-input" id="agregarCita-textarea1">
+          <!--span class="input-label">Motivo</span--><textarea ng-model="cita.motivo" placeholder="Motivo"></textarea></label>
+        <label class="item item-input" id="agregarCita-textarea2">
+          <!--span class="input-label">Anotaciones importantes</span--><textarea style="height: 200px;"ng-model="cita.notasImportantes" placeholder="Notas importantes"></textarea></label>
+      </form>
+      <a id="agregarCita-button21" class="button button-royal  button-block icon-right ion-checkmark-round" ng-click="newAppointment(cita)">Guardar</a>
+    </div>
+  </ion-content>
+</ion-view>

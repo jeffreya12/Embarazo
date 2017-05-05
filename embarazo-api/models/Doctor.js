@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var DoctorSchema = new mongoose.Schema({
 	nombre : String,
-	centro_medico : String,
+	centroMedico : String,
 	correo : String,
 	telefonoCelular : String,
 	telefonoOficina : String,

@@ -3,9 +3,9 @@
     <form id="nuevoConsejo-form7" class="list">
       <label class="item item-input" id="nuevoConsejo-textarea1">
         <!--span class="input-label">Descripción:</span-->
-        <textarea style="height: 300px;" placeholder="Nueva entrada"></textarea>
+        <textarea ng-model="entrada" style="height: 300px;" placeholder="Nueva entrada"></textarea>
       </label>
     </form>
-    <button id="nuevoConsejo-button23" class="button button-royal  button-block">Agregar</button>
+    <button id="nuevoConsejo-button23" class="button button-royal  button-block" ng-click="newEntry(entrada)">Agregar</button>
   </ion-content>
 </ion-view>
