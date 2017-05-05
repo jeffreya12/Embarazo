@@ -297,8 +297,42 @@ function ($scope, $stateParams, $state, $window, service) {
 		console.log(bebe);
 		service.put('bebe/' + $window.localStorage.getItem('user_id'), bebe, $scope )
 		.then(function(data){
-			$scope.bebes = data.data;
 			$state.go('beb', {}, {reload: true});
+		});
+	}
+
+}])
+
+.controller('agregarCitaCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $state, $window, service) {
+
+	$scope.newAppointment = function(cita) {
+		console.log(cita);
+		service.post('cita/', {
+									'motivo' : cita.motivo,
+									'fecha' : cita.fecha,
+									'notasImportantes' : cita.notasImportantes,
+									'user_id' : $window.localStorage.getItem('user_id')
+								}, $scope )
+		.then(function(data){
+			$state.go('consultasMDicas', {}, {reload: true});
+		});
+	}
+
+}])
+
+.controller('editarInformaciNDelDoctorCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $state, $window, service) {
+
+	$scope.updateDoctor = function(doctor) {
+		console.log(doctor);
+		service.put('doctor/' + $window.localStorage.getItem('user_id'), doctor, $scope )
+		.then(function(data){
+			$state.go('consultasMDicas', {}, {reload: true});
 		});
 	}
 

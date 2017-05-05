@@ -1,4 +1,4 @@
-<ion-view title="Consultas Médicas" id="page10" style="">
+<ion-view title="Consultas Médicas" id="page10" style="" cache-view="false">
   <ion-content padding="true" style="background: url(img/TO8M3Y1QnO0K8rYm4Nbm_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
     <div ng-repeat="doctor in doctores">
 		<ion-list id="consultasMDicas-list11">
@@ -24,7 +24,7 @@
 			  <i class="icon ion-ios-telephone"></i>
 			</ion-item>
 		  </ion-list>
-		  <button id="consultasMDicas-button15" class="button button-royal  button-block icon ion-android-create">Actualizar</button>
+		  <button ui-sref="editarInformaciNDelDoctor" id="consultasMDicas-button15" class="button button-royal  button-block icon ion-android-create">Actualizar</button>
 		</div>
     </div>
     <div class="item item-body" id="consultasMDicas-list-item-container10" style="">
@@ -38,7 +38,7 @@
           <span class="item-note">{{cita.motivo}}</span>
         </ion-item>
       </ion-list>
-      <button id="consultasMDicas-button14" class="button button-royal  button-block  icon ion-android-create">Nuevo Registro</button>
+      <button ui-sref="agregarCita" id="consultasMDicas-button14" class="button button-royal  button-block  icon ion-android-create">Nuevo Registro</button>
     </div>
   </ion-content>
 </ion-view>
