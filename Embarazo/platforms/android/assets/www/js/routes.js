@@ -117,6 +117,12 @@ angular.module('app.routes', [])
     templateUrl: 'templates/editarInformaciNDelDoctor.html',
     controller: 'editarInformaciNDelDoctorCtrl'
   })
+  
+  .state('acercaDeLaAplicacion', {
+    url: '/page33',
+    templateUrl: 'templates/acercaDeLaAplicacion.html',
+    controller: 'acercaDeLaAplicacionCtrl'
+  })
 
 $urlRouterProvider.otherwise('/page8')
 
