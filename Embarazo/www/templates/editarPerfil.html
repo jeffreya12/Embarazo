@@ -1,0 +1,37 @@
+<ion-view title="Editar perfil" id="page34">
+  <ion-content padding="true" style="background: url(img/hj7WgSueQuGQRfgOUMNK_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
+    <form name="formaEditarPerfil" id="editarPerfil-form6" class="list">
+      <ion-list id="editarPerfil-list12">
+        <label class="item item-input" id="editarPerfil-input5">
+          <!--span class="input-label">Nombre</span-->
+          <input ng-model="usuario.nombre" placeholder="Nombre" type="text">
+        </label>
+        <label class="item item-input" id="editarPerfil-input8">
+          <!--span class="input-label">Correo Electrónico</span-->
+          <input ng-model="usuario.correo" placeholder="Correo Electrónico" type="email">
+        </label>
+        <label class="item item-input" id="editarPerfil-input6">
+          <!--span class="input-label">Teléfono emergencia</span-->
+          <input ng-model="usuario.telefono" placeholder="Teléfono de emergencia" type="tel">
+        </label>
+        <label class="item item-input" id="editarPerfil-input11">
+          <span class="input-label">Fecha de nacimiento</span>
+          <input ng-model="usuario.fechaDeNacimiento" placeholder="" type="date">
+        </label>
+        <label class="item item-input" id="editarPerfil-input9">
+          <span class="input-label">Último Período</span>
+          <input ng-model="usuario.ultimoPeriodo" placeholder="" type="date">
+        </label>
+        <label class="item item-input" id="editarPerfil-input7">
+          <!--span class="input-label">Contraseña</span-->
+          <input ng-model="usuario.pass" placeholder="Contraseña" type="password">
+        </label>
+        <label class="item item-input" id="editarPerfil-input10">
+          <!--span class="input-label">Confirmar la contraseña</span-->
+          <input ng-model="usuario.passConfirm" placeholder="Confirmar la contraseña" type="password">
+        </label>
+      </ion-list>
+      <a id="editarPerfil-button15" class="button button-royal  button-block icon-right ion-checkmark-round" ng-click="updateUsuario(usuario)">Guardar</a>
+    </form>
+  </ion-content>
+</ion-view>

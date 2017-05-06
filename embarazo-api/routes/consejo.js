@@ -29,7 +29,7 @@ router.get('/:user_id', function(req, res, next) {
 
 /* GET /user_id */
 router.get('/:user_id', function(req, res, next) {
-  Consejo.find(req.params, function (err, consejo) {
+  Consejo.find(req.params, null, {sort: '-fecha'}, function (err, consejo) {
     if (err) return next(err);
     res.json(consejo);
   });

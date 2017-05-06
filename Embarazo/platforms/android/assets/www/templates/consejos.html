@@ -14,6 +14,12 @@
 			}
 		</style>
 		
+		<div class="card" ng-show="nodata">
+			<div class="item item-divider">
+				No hay nada por el momento :)
+			</div>
+		</div>
+		
 		<div class="card" ng-repeat="consejo in consejos">
 			<div class="item item-divider">
 				{{consejo.fecha | date:'short'}}

@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
 
 /* GET /id */
 router.get('/:user_id', function(req, res, next) {
-  Cita.find(req.params, function (err, cita) {
+  Cita.find(req.params, null, {sort: '-fecha'}, function (err, cita) {
     if (err) return next(err);
     res.json(cita);
   });

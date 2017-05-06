@@ -10,6 +10,13 @@ function ($scope, $stateParams, service, $ionicPopup, $ionicLoading) {
 	.then(function(data){
 		$scope.recomendaciones = data.data;
 		$ionicLoading.hide();
+				
+		if ($scope.recomendaciones.length == 0){
+			$scope.nodata = true;
+			console.log($scope.recomendaciones.length);
+		} else{
+			$scope.nodata = false;
+		}
 	});
 	
 	$scope.verRecomendacion = function(titulo, contenido) {        
@@ -45,6 +52,14 @@ function ($scope, $stateParams, service, $window, $ionicLoading) {
 	.then(function(data){
 		$scope.citas = data.data;
 		$ionicLoading.hide();
+		
+		if ($scope.citas.length == 0){
+			$scope.nodata = true;
+			console.log($scope.citas.length);
+		} else{
+			$scope.nodata = false;
+		}
+		
 	});
 
 }])
@@ -56,7 +71,7 @@ function ($scope, $stateParams, $window, $state) {
 
 	$scope.logout = function() {
 		$window.localStorage.setItem('user_id', '');
-		console.log($window.localStorage.getItem('user_id'));
+		//console.log($window.localStorage.getItem('user_id'));
 		$state.go('iniciarSesiN');
     }
 
@@ -106,7 +121,7 @@ function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ion
 	
 	if ($window.localStorage.getItem('user_id') != '' && $window.localStorage.getItem('user_id') != null){
 		$state.go('tabsController.inicio');
-		console.log($window.localStorage.getItem('user_id'));
+		//console.log($window.localStorage.getItem('user_id'));
 	}
  
 	$scope.data = {};
@@ -134,7 +149,7 @@ function ($scope, $stateParams, service, $state, $window, $ionicLoading) {
 
 	$scope.register = function(registro){
 		$ionicLoading.show();
-		console.log(registro);
+		//console.log(registro);
 		service.post('usuario/', registro, $scope )
 		.then(function(data){
 			$scope.users = data.data;
@@ -156,7 +171,7 @@ function ($scope, $stateParams, service, $state, $window, $ionicLoading) {
 									'user_id' : $scope.users._id 
 									}, $scope )
 			
-			console.log($window.localStorage.getItem('user_id'));
+			//console.log($window.localStorage.getItem('user_id'));
 			$state.go('tabsController.inicio');
 			$ionicLoading.hide();
 		});
@@ -200,6 +215,14 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
 	.then(function(data){
 		$scope.consejos = data.data;
 		$ionicLoading.hide();
+		
+		if ($scope.consejos.length == 0){
+			$scope.nodata = true;
+			console.log($scope.consejos.length);
+		} else{
+			$scope.nodata = false;
+		}
+		
 	});
 	
 	$scope.verEntrada = function(fecha, entrada) {        
@@ -211,15 +234,24 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
 
 }])
    
-.controller('fotografAsCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$cordovaFile', 'FileService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('fotografAsCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$cordovaFile', 'FileService', '$state', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService) {
+function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService, $state, $ionicLoading) {
  
 	$scope.images = FileService.images();
 	
+	if ($scope.images.length == 0){
+		$scope.nodata = true;
+		console.log($scope.images.length);
+	} else{
+		$scope.nodata = false;
+	}
  
 	$scope.addImage = function() {
+		
+		$ionicLoading.show();
+		
 		// 2
 		var options = {
 			destinationType : Camera.DestinationType.FILE_URI,
@@ -263,11 +295,14 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService) {
 			function onCopySuccess(entry) {
 				$scope.$apply(function () {
 					FileService.storeImage(entry.nativeURL);
+					$state.go($state.current, {}, {reload: true});
+					$ionicLoading.hide();
 				});
 			}
 	 
 			function fail(error) {
 				console.log("fail: " + error.code);
+				$ionicLoading.hide();
 			}
 	 
 			function makeid() {
@@ -299,7 +334,7 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService) {
 function ($scope, $stateParams, $window, service, $state, $ionicLoading) {
 
 	$scope.newEntry = function(entrada) {
-		console.log(entrada);
+		//console.log(entrada);
 		$ionicLoading.show();
 		service.post('consejo/', {
 									'fecha' : new Date(),
@@ -320,7 +355,7 @@ function ($scope, $stateParams, $window, service, $state, $ionicLoading) {
 function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 	$scope.updateBebe = function(bebe) {
-		console.log(bebe);
+		//console.log(bebe);
 		$ionicLoading.show();
 		service.put('bebe/' + $window.localStorage.getItem('user_id'), bebe, $scope )
 		.then(function(data){
@@ -337,7 +372,7 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 	$scope.newAppointment = function(cita) {
-		console.log(cita);
+		//console.log(cita);
 		$ionicLoading.show();
 		service.post('cita/', {
 									'motivo' : cita.motivo,
@@ -359,7 +394,7 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 	$scope.updateDoctor = function(doctor) {
-		console.log(doctor);
+		//console.log(doctor);
 		$ionicLoading.show();
 		service.put('doctor/' + $window.localStorage.getItem('user_id'), doctor, $scope )
 		.then(function(data){
