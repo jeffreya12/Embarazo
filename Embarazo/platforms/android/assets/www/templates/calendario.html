@@ -1,4 +1,4 @@
-<ion-view title="Agenda" id="page4" style="">
+<ion-view title="Agenda" id="page4" style="" cache-view="false">
   <ion-content padding="true" style="background: url(img/iU38ZFCUT3WKZa48NWE4_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
 		
 	<div class="card" ng-show="nodata">
@@ -9,11 +9,13 @@
 	
 	
 	<div class="card" ng-repeat="cita in citas">
-		<div class="item item-divider">
-			{{ cita.motivo }}
-		</div>                    
-		<div class="item item-text-wrap">
-			<strong>Cuándo: {{ cita.fecha | date:'short' }}</strong>
+		<div ng-click="verCita('{{cita.motivo}}', '{{cita.notasImportantes}}')">
+			<div class="item item-divider">
+				{{ cita.motivo }}
+			</div>                    
+			<div class="item item-text-wrap">
+				<strong>Cuándo: {{ cita.fecha | date:'short' }}</strong>
+			</div>
 		</div>
 	</div>
 

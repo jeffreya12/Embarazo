@@ -24,7 +24,13 @@
 			  <i class="icon ion-ios-telephone"></i>
 			</ion-item>
 		  </ion-list>
-		  <button ui-sref="editarInformaciNDelDoctor" id="consultasMDicas-button15" class="button button-royal  button-block icon ion-android-create">Actualizar</button>
+		  <!--button ui-sref="editarInformaciNDelDoctor" id="consultasMDicas-button15" class="button button-royal  button-block icon ion-android-create">Actualizar</button-->
+		  
+		<div id="consultas-button-bar2" class="button-bar">
+			<a ui-sref="editarInformaciNDelDoctor" id="consultasMDicas-button15" class="button button-royal  button-block icon-right ion-edit" style="text-align:left;">Actualizar</a>
+			<a ui-sref="agregarCita" id="consultasMDicas-button14" class="button button-royal  button-block  icon-right ion-android-add-circle" style="text-align:left;">Nueva cita</a>
+		</div>
+		  
 		</div>
     </div>
     <div class="item item-body" id="consultasMDicas-list-item-container10" style="">
@@ -38,7 +44,7 @@
           <span class="item-note">{{cita.motivo}}</span>
         </ion-item>
       </ion-list>
-      <button ui-sref="agregarCita" id="consultasMDicas-button14" class="button button-royal  button-block  icon ion-android-create">Nuevo Registro</button>
+      <!--button ui-sref="agregarCita" id="consultasMDicas-button14" class="button button-royal  button-block  icon ion-android-create">Nuevo Registro</button-->
     </div>
   </ion-content>
 </ion-view>

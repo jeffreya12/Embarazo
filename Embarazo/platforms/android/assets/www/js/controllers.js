@@ -42,10 +42,10 @@ function ($scope, $stateParams, service, $window, $ionicLoading) {
 
 }])
    
-.controller('calendarioCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('calendarioCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $window, $ionicLoading) {
+function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup) {
 
 	$ionicLoading.show();
 	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
@@ -61,6 +61,13 @@ function ($scope, $stateParams, service, $window, $ionicLoading) {
 		}
 		
 	});
+	
+	$scope.verCita = function(motivo, notasImportantes) {        
+		var alertPopup = $ionicPopup.alert({
+			title: motivo,
+			template: notasImportantes
+		});
+    }
 
 }])
       
@@ -134,8 +141,8 @@ function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ion
         }).error(function(data) {
 			$ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
+                title: 'Falló el iniciar sesión',
+                template: 'Por favor verificá los datos'
             });
         });
     }
@@ -399,6 +406,23 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 		service.put('doctor/' + $window.localStorage.getItem('user_id'), doctor, $scope )
 		.then(function(data){
 			$state.go('consultasMDicas', {}, {reload: true});
+			$ionicLoading.hide();
+		});
+	}
+
+}])
+
+.controller('editarPerfilCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
+
+	$scope.updateUsuario = function(usuario) {
+		//console.log(doctor);
+		$ionicLoading.show();
+		service.put('usuario/' + $window.localStorage.getItem('user_id'), usuario, $scope )
+		.then(function(data){
+			$state.go('tabsController.miPerfil', {}, {reload: true});
 			$ionicLoading.hide();
 		});
 	}
