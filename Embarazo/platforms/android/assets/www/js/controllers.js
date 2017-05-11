@@ -13,7 +13,7 @@ function ($scope, $stateParams, service, $ionicPopup, $ionicLoading) {
 				
 		if ($scope.recomendaciones.length == 0){
 			$scope.nodata = true;
-			console.log($scope.recomendaciones.length);
+			//console.log($scope.recomendaciones.length);
 		} else{
 			$scope.nodata = false;
 		}
@@ -42,11 +42,30 @@ function ($scope, $stateParams, service, $window, $ionicLoading) {
 
 }])
    
-.controller('calendarioCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('calendarioCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicLoading', '$ionicPopup', '$cordovaCalendar', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup) {
+function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup, $cordovaCalendar) {
+	
 
+	// prep some variables
+	var startDate = new Date();
+	startDate.setHours(0,0,0,0);
+	
+	var endDate = startDate;
+	endDate.setDate(endDate.getDate() + 1);
+	
+	var success = function(message) { console.log("Success: " + JSON.stringify(message)); };
+	var error = function(message) { console.log("Error: " + message); };
+	
+	console.log("FECHA DE INICIO " + startDate);
+	console.log("FECHA FINAL " + endDate);
+	
+	// list all events in a date range (only supported on Android for now)
+	var eventos = window.plugins.calendar.listEventsInRange(startDate, endDate, success, error)
+	console.log(eventos);
+    
+	/*
 	$ionicLoading.show();
 	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
@@ -55,7 +74,7 @@ function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup) {
 		
 		if ($scope.citas.length == 0){
 			$scope.nodata = true;
-			console.log($scope.citas.length);
+			//console.log($scope.citas.length);
 		} else{
 			$scope.nodata = false;
 		}
@@ -68,6 +87,7 @@ function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup) {
 			template: notasImportantes
 		});
     }
+    */
 
 }])
       
@@ -149,39 +169,48 @@ function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ion
 
 }])
    
-.controller('registrarseCtrl', ['$scope', '$stateParams', 'service', '$state', '$window', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('registrarseCtrl', ['$scope', '$stateParams', 'service', '$state', '$window', '$ionicLoading', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $state, $window, $ionicLoading) {
+function ($scope, $stateParams, service, $state, $window, $ionicLoading, $ionicPopup) {
 
 	$scope.register = function(registro){
 		$ionicLoading.show();
 		//console.log(registro);
-		service.post('usuario/', registro, $scope )
-		.then(function(data){
-			$scope.users = data.data;
-			$window.localStorage.setItem('user_id', $scope.users._id)
-			
-			service.post('doctor/', {
-									'nombre' : '',
-									'centro_medico' : '',
-									'correo' : '',
-									'telefonoCelular' : '',
-									'telefonoOficina' : '',
-									'user_id' : $scope.users._id 
-									}, $scope )
-			
-			service.post('bebe/', {
-									'genero' : '',
-									'peso' : '',
-									'tamano' : '',
-									'user_id' : $scope.users._id 
-									}, $scope )
-			
-			//console.log($window.localStorage.getItem('user_id'));
-			$state.go('tabsController.inicio');
-			$ionicLoading.hide();
-		});
+		if (registro.pass === registro.passConfirm){
+			service.post('usuario/', registro, $scope )
+			.then(function(data){
+				$scope.users = data.data;
+				$window.localStorage.setItem('user_id', $scope.users._id)
+				
+				service.post('doctor/', {
+										'nombre' : 'Sin definir',
+										'centroMedico' : 'Sin definir',
+										'correo' : 'Sin definir',
+										'telefonoCelular' : 'Sin definir',
+										'telefonoOficina' : 'Sin definir',
+										'user_id' : $scope.users._id 
+										}, $scope )
+				
+				service.post('bebe/', {
+										'genero' : 'Sin definir',
+										'peso' : '0',
+										'tamano' : '0',
+										'user_id' : $scope.users._id 
+										}, $scope )
+				
+				//console.log($window.localStorage.getItem('user_id'));
+				$state.go('tabsController.inicio');
+				$ionicLoading.hide();
+			});
+		}
+		else {
+			var alertPopup = $ionicPopup.alert({
+                title: 'Las contraseñas no coinciden',
+                template: 'Por favor verificá los datos'
+            });
+            $ionicLoading.hide();
+		}
 	}
 
 }])
@@ -225,7 +254,7 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
 		
 		if ($scope.consejos.length == 0){
 			$scope.nodata = true;
-			console.log($scope.consejos.length);
+			//console.log($scope.consejos.length);
 		} else{
 			$scope.nodata = false;
 		}
@@ -250,7 +279,7 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService, $stat
 	
 	if ($scope.images.length == 0){
 		$scope.nodata = true;
-		console.log($scope.images.length);
+		//console.log($scope.images.length);
 	} else{
 		$scope.nodata = false;
 	}
@@ -373,14 +402,24 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 }])
 
-.controller('agregarCitaCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('agregarCitaCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', '$cordovaCalendar', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
-
+function ($scope, $stateParams, $state, $window, service, $ionicLoading, $cordovaCalendar) {
+		
 	$scope.newAppointment = function(cita) {
 		//console.log(cita);
+					
+		var endDate = new Date(cita.fecha);
+		endDate.setDate(endDate.getDate() + 1);
+		
+		var success = function(message) { console.log("Success: " + JSON.stringify(message)); };
+		var error = function(message) { console.log("Error: " + message); };
+		
 		$ionicLoading.show();
+		
+		window.plugins.calendar.createEvent(cita.motivo, 'Consultorio Médico', cita.notasImportantes, cita.fecha, endDate, success, error);
+		
 		service.post('cita/', {
 									'motivo' : cita.motivo,
 									'fecha' : cita.fecha,
@@ -391,6 +430,7 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 			$state.go('consultasMDicas', {}, {reload: true});
 			$ionicLoading.hide();
 		});
+		
 	}
 
 }])
@@ -412,19 +452,28 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 }])
 
-.controller('editarPerfilCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('editarPerfilCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
+function ($scope, $stateParams, $state, $window, service, $ionicLoading, $ionicPopup) {
 
 	$scope.updateUsuario = function(usuario) {
 		//console.log(doctor);
 		$ionicLoading.show();
-		service.put('usuario/' + $window.localStorage.getItem('user_id'), usuario, $scope )
-		.then(function(data){
-			$state.go('tabsController.miPerfil', {}, {reload: true});
-			$ionicLoading.hide();
-		});
+		if (usuario.pass === usuario.passConfirm){
+			service.put('usuario/' + $window.localStorage.getItem('user_id'), usuario, $scope )
+			.then(function(data){
+				$state.go('tabsController.miPerfil', {}, {reload: true});
+				$ionicLoading.hide();
+			});
+		}
+		else{
+			var alertPopup = $ionicPopup.alert({
+                title: 'Las contraseñas no coinciden',
+                template: 'Por favor verificá los datos'
+            });
+            $ionicLoading.hide();
+		}
 	}
 
 }])
