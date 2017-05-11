@@ -149,39 +149,48 @@ function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ion
 
 }])
    
-.controller('registrarseCtrl', ['$scope', '$stateParams', 'service', '$state', '$window', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('registrarseCtrl', ['$scope', '$stateParams', 'service', '$state', '$window', '$ionicLoading', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $state, $window, $ionicLoading) {
+function ($scope, $stateParams, service, $state, $window, $ionicLoading, $ionicPopup) {
 
 	$scope.register = function(registro){
 		$ionicLoading.show();
 		//console.log(registro);
-		service.post('usuario/', registro, $scope )
-		.then(function(data){
-			$scope.users = data.data;
-			$window.localStorage.setItem('user_id', $scope.users._id)
-			
-			service.post('doctor/', {
-									'nombre' : '',
-									'centro_medico' : '',
-									'correo' : '',
-									'telefonoCelular' : '',
-									'telefonoOficina' : '',
-									'user_id' : $scope.users._id 
-									}, $scope )
-			
-			service.post('bebe/', {
-									'genero' : '',
-									'peso' : '',
-									'tamano' : '',
-									'user_id' : $scope.users._id 
-									}, $scope )
-			
-			//console.log($window.localStorage.getItem('user_id'));
-			$state.go('tabsController.inicio');
-			$ionicLoading.hide();
-		});
+		if (registro.pass === registro.passConfirm){
+			service.post('usuario/', registro, $scope )
+			.then(function(data){
+				$scope.users = data.data;
+				$window.localStorage.setItem('user_id', $scope.users._id)
+				
+				service.post('doctor/', {
+										'nombre' : 'Sin definir',
+										'centroMedico' : 'Sin definir',
+										'correo' : 'Sin definir',
+										'telefonoCelular' : 'Sin definir',
+										'telefonoOficina' : 'Sin definir',
+										'user_id' : $scope.users._id 
+										}, $scope )
+				
+				service.post('bebe/', {
+										'genero' : 'Sin definir',
+										'peso' : '0',
+										'tamano' : '0',
+										'user_id' : $scope.users._id 
+										}, $scope )
+				
+				//console.log($window.localStorage.getItem('user_id'));
+				$state.go('tabsController.inicio');
+				$ionicLoading.hide();
+			});
+		}
+		else {
+			var alertPopup = $ionicPopup.alert({
+                title: 'Las contraseñas no coinciden',
+                template: 'Por favor verificá los datos'
+            });
+            $ionicLoading.hide();
+		}
 	}
 
 }])
@@ -412,19 +421,28 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
 
 }])
 
-.controller('editarPerfilCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('editarPerfilCtrl', ['$scope', '$stateParams', '$state', '$window', 'service', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $window, service, $ionicLoading) {
+function ($scope, $stateParams, $state, $window, service, $ionicLoading, $ionicPopup) {
 
 	$scope.updateUsuario = function(usuario) {
 		//console.log(doctor);
 		$ionicLoading.show();
-		service.put('usuario/' + $window.localStorage.getItem('user_id'), usuario, $scope )
-		.then(function(data){
-			$state.go('tabsController.miPerfil', {}, {reload: true});
-			$ionicLoading.hide();
-		});
+		if (usuario.pass === usuario.passConfirm){
+			service.put('usuario/' + $window.localStorage.getItem('user_id'), usuario, $scope )
+			.then(function(data){
+				$state.go('tabsController.miPerfil', {}, {reload: true});
+				$ionicLoading.hide();
+			});
+		}
+		else{
+			var alertPopup = $ionicPopup.alert({
+                title: 'Las contraseñas no coinciden',
+                template: 'Por favor verificá los datos'
+            });
+            $ionicLoading.hide();
+		}
 	}
 
 }])

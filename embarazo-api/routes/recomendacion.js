@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 /* POST*/
 router.post('/', function(req, res, next) {
-  Recomendacion.create(req.body, function (err, recomendacion) {
+  Recomendacion.create(req.body, null, {sort: '-fecha'}, function (err, recomendacion) {
     if (err) return next(err);
     res.json(recomendacion);
   });
