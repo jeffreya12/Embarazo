@@ -47,25 +47,15 @@ function ($scope, $stateParams, service, $window, $ionicLoading) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup, $cordovaCalendar) {
 	
-
-	// prep some variables
 	var startDate = new Date();
 	startDate.setHours(0,0,0,0);
 	
 	var endDate = startDate;
 	endDate.setDate(endDate.getDate() + 1);
 	
-	var success = function(message) { console.log("Success: " + JSON.stringify(message)); };
-	var error = function(message) { console.log("Error: " + message); };
-	
 	console.log("FECHA DE INICIO " + startDate);
 	console.log("FECHA FINAL " + endDate);
-	
-	// list all events in a date range (only supported on Android for now)
-	var eventos = window.plugins.calendar.listEventsInRange(startDate, endDate, success, error)
-	console.log(eventos);
     
-	/*
 	$ionicLoading.show();
 	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
@@ -87,7 +77,6 @@ function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup, $c
 			template: notasImportantes
 		});
     }
-    */
 
 }])
       
