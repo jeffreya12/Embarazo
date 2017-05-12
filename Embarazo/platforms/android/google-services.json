@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "312731372689",
+    "firebase_url": "https://embarazo-53c03.firebaseio.com",
+    "project_id": "embarazo-53c03",
+    "storage_bucket": "embarazo-53c03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312731372689:android:b96e1af6292b9ee2",
+        "android_client_info": {
+          "package_name": "com.ionicframework.embarazo411664"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312731372689-etk34hc7pkutbpb4ihm5nrbcenddve39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGTrtKIXFubwdSHEgQB84lJqx-0w8jCtI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

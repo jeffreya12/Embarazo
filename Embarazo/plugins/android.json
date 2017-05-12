@@ -47,6 +47,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.ionicframework.embarazo411664"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.ionicframework.embarazo411664"
         }
     },
     "dependent_plugins": {

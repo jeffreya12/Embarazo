@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['ionic.cloud'])
   
 .controller('inicioCtrl', ['$scope', '$stateParams', 'service', '$ionicPopup', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -198,6 +198,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ionicLoading) {
+	
 	
 	if ($window.localStorage.getItem('user_id') != '' && $window.localStorage.getItem('user_id') != null){
 		$state.go('tabsController.inicio');
@@ -530,3 +531,22 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading, $ionicP
 	}
 
 }])
+
+.controller('pushCtrl', function($scope, $ionicPush, $ionicPopup) {
+	$ionicPush.register().then(function(t) {
+	  return $ionicPush.saveToken(t);
+	}).then(function(t) {
+	  console.log('Token saved:', t.token);
+	});
+	
+	$scope.$on('cloud:push:notification', function(event, data) {
+	  var msg = data.message;
+	  //alert(msg.title + ': ' + msg.text);
+	  
+	  var alertPopup = $ionicPopup.alert({
+		title: msg.title,
+		template: msg.text
+	  });
+	  
+	});
+})

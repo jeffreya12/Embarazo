@@ -1,9 +1,9 @@
 <ion-view title="Mi Perfil" id="page3" style="" cache-view="false">
   <ion-content  ng-repeat="usuario in usuarios" padding="true" style="background: url(img/I3fI2weQT06Xbag9uGoS_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
     <ion-list id="miPerfil-list3">
-      <ion-item class="item-avatar royal" id="miPerfil-list-item16" style="">
-        <h2royal>{{usuario.nombre}}
-          <p>{{usuario.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
+      <ion-item class="royal" id="miPerfil-list-item16" style="text-align: center;">
+        <h2royal><strong>{{usuario.nombre}}</strong>
+          <p>{{usuario.edad}} años</p>
         </h2royal>
       </ion-item>
       <ion-item class="item-divider" id="miPerfil-list-item-divider1"> Información de contacto</ion-item>
@@ -36,10 +36,10 @@
         <ion-item id="miPerfil-list-item28" style="">{{usuario.ultimoPeriodo | date:'dd/MM/yyyy'}}
           <span class="item-note">Último período</span>
         </ion-item>
-        <ion-item id="miPerfil-list-item29" style="">{{usuario.ultimoPeriodo | date:'dd/MM/yyyy'}}
+        <ion-item id="miPerfil-list-item29" style="">{{usuario.estimacionParto | date:'dd/MM/yyyy'}}
           <span class="item-note">Estimación del parto</span>
         </ion-item>
-        <ion-item class="assertive" id="miPerfil-list-item30" style="">35
+        <ion-item class="assertive" id="miPerfil-list-item30" style="">{{usuario.semana}}
           <span class="item-note">Semana Actual</span>
         </ion-item>
       </ion-list>
