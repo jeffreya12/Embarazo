@@ -39,7 +39,7 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }   
+    }
   });
 })
 .controller('mainCtrl', function($scope, $ionicPush){
