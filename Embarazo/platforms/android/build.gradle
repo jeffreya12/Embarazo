@@ -91,6 +91,7 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "phonegap-plugin-push/embarazo411664-push.gradle"
+apply from: "com-sarriaroman-photoviewer/embarazo411664-photoviewer.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

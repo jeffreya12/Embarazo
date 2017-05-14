@@ -337,10 +337,12 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService, $stat
 	} else{
 		$scope.nodata = false;
 	}
+	
+	$scope.openImage = function(imgURL){
+		PhotoViewer.show(imgURL);
+	}
  
 	$scope.addImage = function() {
-		
-		$ionicLoading.show();
 		
 		// 2
 		var options = {
@@ -386,13 +388,13 @@ function ($scope, $stateParams, $cordovaCamera, $cordovaFile, FileService, $stat
 				$scope.$apply(function () {
 					FileService.storeImage(entry.nativeURL);
 					$state.go($state.current, {}, {reload: true});
-					$ionicLoading.hide();
+					//$ionicLoading.hide();
 				});
 			}
 	 
 			function fail(error) {
 				console.log("fail: " + error.code);
-				$ionicLoading.hide();
+				//$ionicLoading.hide();
 			}
 	 
 			function makeid() {
@@ -542,6 +544,8 @@ function ($scope, $stateParams, $state, $window, service, $ionicLoading, $ionicP
 	$scope.$on('cloud:push:notification', function(event, data) {
 	  var msg = data.message;
 	  //alert(msg.title + ': ' + msg.text);
+	  
+	  //$state.go('tabsController.inicio', {}, {reload: true});
 	  
 	  var alertPopup = $ionicPopup.alert({
 		title: msg.title,

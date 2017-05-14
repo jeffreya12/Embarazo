@@ -97,5 +97,13 @@
         "variables": {
             "SENDER_ID": "312731372689"
         }
+    },
+    "com-sarriaroman-photoviewer": {
+        "source": {
+            "type": "registry",
+            "id": "com-sarriaroman-photoviewer"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

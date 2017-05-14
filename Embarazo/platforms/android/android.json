@@ -51,6 +51,10 @@
                         {
                             "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PhotoViewer\"><param name=\"android-package\" value=\"com.sarriaroman.PhotoViewer.PhotoViewer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -80,7 +84,7 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
@@ -92,6 +96,14 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ],
@@ -110,6 +122,10 @@
                         },
                         {
                             "xml": "<service android:name=\"com.adobe.phonegap.push.PushInstanceIDListenerService\"><intent-filter><action android:name=\"com.google.firebase.INSTANCE_ID_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
                             "count": 1
                         }
                     ]
@@ -152,6 +168,9 @@
             "PACKAGE_NAME": "com.ionicframework.embarazo411664"
         },
         "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.ionicframework.embarazo411664"
+        },
+        "com-sarriaroman-photoviewer": {
             "PACKAGE_NAME": "com.ionicframework.embarazo411664"
         }
     },
@@ -393,9 +412,18 @@
             "clobbers": [
                 "PushNotification"
             ]
+        },
+        {
+            "id": "com-sarriaroman-photoviewer.PhotoViewer",
+            "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+            "pluginId": "com-sarriaroman-photoviewer",
+            "clobbers": [
+                "PhotoViewer"
+            ]
         }
     ],
     "plugin_metadata": {
-        "phonegap-plugin-push": "2.0.0-rc3"
+        "phonegap-plugin-push": "2.0.0-rc3",
+        "com-sarriaroman-photoviewer": "1.1.10"
     }
 }

@@ -50,6 +50,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.ionicframework.embarazo411664"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "com.ionicframework.embarazo411664"
         }
     },
     "dependent_plugins": {

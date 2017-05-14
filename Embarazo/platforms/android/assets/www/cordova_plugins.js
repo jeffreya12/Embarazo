@@ -236,12 +236,21 @@ module.exports = [
         "clobbers": [
             "PushNotification"
         ]
+    },
+    {
+        "id": "com-sarriaroman-photoviewer.PhotoViewer",
+        "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+        "pluginId": "com-sarriaroman-photoviewer",
+        "clobbers": [
+            "PhotoViewer"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "phonegap-plugin-push": "2.0.0-rc3"
+    "phonegap-plugin-push": "2.0.0-rc3",
+    "com-sarriaroman-photoviewer": "1.1.10"
 };
 // BOTTOM OF METADATA
 });
