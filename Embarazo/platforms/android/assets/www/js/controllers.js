@@ -195,13 +195,14 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('iniciarSesiNCtrl', ['$scope', '$stateParams', 'LoginService', '$ionicPopup', '$state', '$window', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('iniciarSesiNCtrl', ['$scope', '$stateParams', 'LoginService', '$ionicPopup', '$state', '$window', '$ionicLoading', '$ionicHistory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ionicLoading) {
+function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ionicLoading, $ionicHistory) {
 	
 	
 	if ($window.localStorage.getItem('user_id') != '' && $window.localStorage.getItem('user_id') != null){
+		$ionicHistory.clearCache();
 		$state.go('tabsController.inicio');
 		//console.log($window.localStorage.getItem('user_id'));
 	}
@@ -211,6 +212,7 @@ function ($scope, $stateParams, LoginService, $ionicPopup, $state, $window, $ion
     $scope.login = function() {
 		$ionicLoading.show();
         LoginService.loginUser($scope.data.user, $scope.data.pass).success(function(data) {
+			$ionicHistory.clearCache();
             $state.go('tabsController.inicio');
             $ionicLoading.hide();
         }).error(function(data) {
@@ -291,7 +293,6 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading, $s
 		$ionicLoading.show();
 		service.delete('cita/' + citaId, {}, $scope )
 		.then(function(data){
-			$ionicLoading.hide();
 			
 			var endDate = new Date(fecha);
 			var startDate = new Date(fecha);
@@ -304,20 +305,23 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading, $s
 			
 			window.plugins.calendar.deleteEvent(motivo, 'Consultorio Médico', notasImportantes, startDate, endDate, success, error);
 			
+			$ionicLoading.hide();
+			
 			var alertPopup = $ionicPopup.alert({
 				title: 'Éxito',
 				template: 'Se ha borrado la cita con éxito'
 			});
+			
 			$state.go($state.current, {}, {reload: true});
 		});
     }
 
 }])
    
-.controller('consejosCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('consejosCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', '$ionicLoading', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
+function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading, $state) {
 	
 	$ionicLoading.show();
 	service.get('consejo/' + $window.localStorage.getItem('user_id'), {}, $scope )
@@ -338,6 +342,22 @@ function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
 		var alertPopup = $ionicPopup.alert({
 			title: fecha,
 			template: entrada
+		});
+    }
+    
+    $scope.borrarEntrada = function(entradaId) {
+		$ionicLoading.show();
+		service.delete('consejo/' + entradaId, {}, $scope )
+		.then(function(data){
+			
+			$ionicLoading.hide();
+			
+			var alertPopup = $ionicPopup.alert({
+				title: 'Éxito',
+				template: 'Se ha borrado la entrada con éxito'
+			});
+			
+			$state.go($state.current, {}, {reload: true});
 		});
     }
 

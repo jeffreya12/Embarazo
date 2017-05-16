@@ -28,7 +28,7 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -40,6 +40,16 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
+    $ionicPlatform.registerBackButtonAction(function (event) {
+	  if($state.current.name == "tabsController.inicio" || $state.current.name == "iniciarSesiN"){
+		navigator.app.exitApp(); //<-- remove this line to disable the exit
+	  }
+	  else {
+		navigator.app.backHistory();
+	  }
+	}, 100);
+    
   });
 })
 .controller('mainCtrl', function($scope, $ionicPush){
