@@ -118,14 +118,15 @@ function ($scope, $stateParams, service, $window, $ionicLoading, $ionicPopup, $c
 
 }])
       
-.controller('menuCtrl', ['$scope', '$stateParams', '$window', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuCtrl', ['$scope', '$stateParams', '$window', '$state', '$ionicHistory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $window, $state) {
+function ($scope, $stateParams, $window, $state, $ionicHistory) {
 
 	$scope.logout = function() {
 		$window.localStorage.setItem('user_id', '');
 		//console.log($window.localStorage.getItem('user_id'));
+		$ionicHistory.clearCache();
 		$state.go('iniciarSesiN');
     }
 
@@ -269,27 +270,45 @@ function ($scope, $stateParams, service, $state, $window, $ionicLoading, $ionicP
 
 }])
    
-.controller('consultasMDicasCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('consultasMDicasCtrl', ['$scope', '$stateParams', 'service', '$window', '$ionicPopup', '$ionicLoading', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading) {
+function ($scope, $stateParams, service, $window, $ionicPopup, $ionicLoading, $state) {
 
 	$ionicLoading.show();
 	service.get('doctor/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
 		$scope.doctores = data.data;
-		$ionicLoading.hide();
 	});
 
 	service.get('cita/' + $window.localStorage.getItem('user_id'), {}, $scope )
 	.then(function(data){
 		$scope.citas = data.data;
+		$ionicLoading.hide();
 	});
 	
-	$scope.verCita = function(motivo, notasImportantes) {        
-		var alertPopup = $ionicPopup.alert({
-			title: motivo,
-			template: notasImportantes
+	$scope.borrarCita = function(citaId, motivo, notasImportantes, fecha) {
+		$ionicLoading.show();
+		service.delete('cita/' + citaId, {}, $scope )
+		.then(function(data){
+			$ionicLoading.hide();
+			
+			var endDate = new Date(fecha);
+			var startDate = new Date(fecha);
+			endDate.setDate(endDate.getDate() + 1);
+			
+			console.log("endDate CITA:" + endDate);
+			
+			var success = function(message) { console.log("Success: " + JSON.stringify(message)); };
+			var error = function(message) { console.log("Error: " + message); };
+			
+			window.plugins.calendar.deleteEvent(motivo, 'Consultorio Médico', notasImportantes, startDate, endDate, success, error);
+			
+			var alertPopup = $ionicPopup.alert({
+				title: 'Éxito',
+				template: 'Se ha borrado la cita con éxito'
+			});
+			$state.go($state.current, {}, {reload: true});
 		});
     }
 

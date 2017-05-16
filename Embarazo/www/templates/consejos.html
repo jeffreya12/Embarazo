@@ -1,39 +1,33 @@
 <ion-view title="Diario" id="page11" style="" cache-view="false">
   <ion-content padding="true" style="background: url(img/HkSskUSSRfypXUla2pEi_baby-during-pregnancy.jpg) no-repeat center;background-size:cover;" class="has-header">
     
-    <ion-scroll>
+    <a ui-sref="nuevoConsejo" id="consejos-button15" class="button button-royal  button-block ion-android-create">Redactar nueva entrada</a>
 		
-		<style>
-			.container {
-				 height: 48px;
-				 overflow: hidden;
-			}
-			.show {
-				 overflow: visible;
-				 height: auto;
-			}
-		</style>
-		
-		<div class="card" ng-show="nodata">
-			<div class="item item-divider">
-				No hay nada por el momento :)
-			</div>
-		</div>
-		
-		<div class="card" ng-repeat="consejo in consejos">
-			<div class="item item-divider">
-				{{consejo.fecha | date:'short'}}
-			</div>                    
-			<div class="item item-text-wrap container" ng-class="{show: show}" ng-click="verEntrada('{{consejo.fecha | date:'short'}}', '{{consejo.entrada}}')">
-				<strong>{{consejo.entrada}}</strong>
-			</div>
-		</div>
-		
-	</ion-scroll>
+	<style>
+		.container {
+			 height: 48px;
+			 overflow: hidden;
+		}
+		.show {
+			 overflow: visible;
+			 height: auto;
+		}
+	</style>
 	
-	<div class="spacer" style="width: 300px; height: 36px;"></div>
+	<div class="card" ng-show="nodata">
+		<div class="item item-divider">
+			No hay nada por el momento :)
+		</div>
+	</div>
 	
-	<a ui-sref="nuevoConsejo" id="consejos-button15" class="button button-royal  button-block ion-android-create">Redactar nueva entrada</a>
+	<div class="card" ng-repeat="consejo in consejos">
+		<div class="item item-divider">
+			{{consejo.fecha | date:'short'}}
+		</div>                    
+		<div class="item item-text-wrap container" ng-class="{show: show}" ng-click="verEntrada('{{consejo.fecha | date:'short'}}', '{{consejo.entrada}}')">
+			<strong>{{consejo.entrada}}</strong>
+		</div>
+	</div>
 	
   </ion-content>
 </ion-view>

@@ -40,8 +40,9 @@
         </p>
       </div>
       <ion-list id="consultasMDicas-list14" ng-repeat="cita in citas">
-        <ion-item id="consultasMDicas-list-item20" style="" ng-click="verCita('{{cita.motivo}}', '{{cita.notasImportantes}}')">{{cita.fecha | date: "dd/MM/yyyy"}}
+        <ion-item class="item-icon-right" id="consultasMDicas-list-item20" style="" ng-click="borrarCita('{{cita._id}}', '{{cita.motivo}}', '{{cita.notasImportantes}}', '{{cita.fecha}}')">{{cita.fecha | date: "dd/MM/yyyy"}}
           <span class="item-note">{{cita.motivo}}</span>
+          <i class="icon ion-ios-trash"></i>
         </ion-item>
       </ion-list>
       <!--button ui-sref="agregarCita" id="consultasMDicas-button14" class="button button-royal  button-block  icon ion-android-create">Nuevo Registro</button-->
